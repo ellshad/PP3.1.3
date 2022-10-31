@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>ИЗМЕНИТЬ</title>
+</head>
+<body>
+<div th:align="center">
+  <h2>Изменить пользователя</h2>
+  <form th:action="@{/update/{id} (id=${user.getId()})}" th:object="${user}" th:method="POST">
+    <table th:border="2" th:cellpadding="15">
+      <tr>
+        <td colspan="2" th:align="center"><a>Изменить пользователя с ID:</a>
+          <a th:text="${user.id}"> </a></td>
+      </tr>
+      <tr>
+        <td>Имя:</td>
+        <td><label>
+          <input type="text" th:field="${user.name}"/>
+        </label></td>
+      </tr>
+      <tr>
+        <td>Фамилия:</td>
+        <td><label>
+          <input type="text" th:field="${user.surname}"/>
+        </label></td>
+      </tr>
+      <tr>
+        <td>Возраст:</td>
+        <td><label>
+          <input type="number" th:field="${user.age}"/>
+        </label></td>
+      </tr>
+      <tr>
+        <td>Username:</td>
+        <td><label>
+          <input type="text" th:field="${user.username}"/>
+          <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}">username error</div>
+        </label></td>
+      </tr>
+      <tr>
+        <td>Пароль</td>
+        <td><input type="password" th:field="${user.password}"/>
+          <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">error</div>
+        </td>
+      </tr>
+      <tr>
+        <td>Роль:</td>
+        <td>
+          <th:block th:each="role: ${roles}">
+            <input type="checkbox" th:field="*{roles}"
+                   th:text="${role.name}" th:value="${role.id}"/>
+          </th:block></td>
+      </tr>
+      <tr>
+        <td colspan="2" th:align="center"><input type="submit" value="Изменить"></td>
+      </tr>
+    </table>
+  </form>
+  <form th:action="@{/logout}">
+    <button>Выйти</button>
+  </form>
+</div>
+</body>
+</html>

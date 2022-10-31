@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователи</title>
+</head>
+<body>
+<div th:align="center">
+    <h2>Таблица пользователей</h2>
+    <table th:border="1" width="50%">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Возраст</th>
+            <th>Username</th>
+            <th>Роль</th>
+            <th>Управление</th>
+        </tr>
+        </thead>
+        <tbody th:align="center">
+        <tr th:each="user : ${users}">
+            <td th:text="${user.getId()}"></td>
+            <td th:text="${user.getName()}"></td>
+            <td th:text="${user.getSurname}"></td>
+            <td th:text="${user.getAge()}"></td>
+            <td th:text="${user.getUsername()}"></td>
+            <td th:text="${user.getRoles()}"></td>
+            <td>
+                <form th:action="@{/update/{id}(id=${user.getId})}">
+                    <button>Изменить</button>
+                </form>
+                <form th:action="@{/delete/{id}(id=${user.getId})}">
+                <button>Удалить</button>
+                </form>
+        </tr>
+        </tbody>
+    </table>
+    <form th:action="@{/create}">
+        <button>Добавить пользователя</button>
+    </form>
+    <form th:action="@{/logout}">
+        <button>Выйти</button>
+    </form>
+</div>
+</body>
+</html>
