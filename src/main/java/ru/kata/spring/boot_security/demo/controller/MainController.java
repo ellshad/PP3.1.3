@@ -6,7 +6,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.model.User;
-import ru.kata.spring.boot_security.demo.service.UserService;
+import ru.kata.spring.boot_security.demo.service.UserServiceImpl;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -15,10 +15,10 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 public class MainController {
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
 
-    public MainController(UserService userService) {
+    public MainController(UserServiceImpl userService) {
         this.userService = userService;
     }
 
